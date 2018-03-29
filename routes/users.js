@@ -9,7 +9,7 @@ router.get('/', functions.isLoggedIn, (req, res, next) =>{
  User.findOne(
 	 {'username': req.user.username},
 	 // list of information to grab from the db
-	 'firstname lastname gender dateofbirth city province postalcode phone address userType companyName contactPerson companySite oesc', (err,user) => {
+	 'firstname lastname gender dateofbirth city province postalcode phone address userType companyName contactPerson companySite oesc approved', (err,user) => {
 		if(err){
 			console.log(err);
 		}
@@ -40,7 +40,8 @@ router.get('/', functions.isLoggedIn, (req, res, next) =>{
 			province: user.province,
 			postalcode: user.postalcode,
 			phone: user.phone,
-			address: user.address
+			address: user.address,
+			approved: user.approved
 		})
 		}
 	});

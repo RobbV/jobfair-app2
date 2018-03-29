@@ -29,6 +29,11 @@
 
    <!-- Page Jumbotron -->
    <div class="jumbotron-sm" id="jumbotronbanner">
+		 <% if(approved == undefined){%>
+			 <div class="alert alert-warning" role="alert">
+				Your account is in the process being approved - you can setup your company's profile but it will not be visable to others.
+			</div>
+		<%}%>
       <div class="container">
           <div class="row">
               <div class="col-sm-12 col-lg-12">
@@ -52,13 +57,13 @@
 
       <div class="col-md-8">
           <iframe width="700" height="400" src="https://www.youtube.com/embed/rMQyp1n__54" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        
+
       </div>
 
       <div class="col-md-4">
         <h3 class="my-3">Casino Rama</h3>
         <img class="img-fluid" src="images/casino-rama.png" alt="">
-       
+
         <br><br>
         <a class="btn btn-primary" href="#" role="button">Live Chat</a>
         <a class="btn btn-success" href="#" role="button">Job Postings</a>
@@ -72,15 +77,15 @@
                     <a class="fa fa-instagram fa-2x" href="https://www.instagram.com/casinoramaresort/"></a>
                     <a class="fa fa-twitter fa-2x" href="https://twitter.com/casinoramalive?lang=en"></a>
                     <a class="fa fa-facebook fa-2x" href="https://www.facebook.com/casinoramaresort/"></a>
-                    <a class="fa fa-youtube fa-2x" href="https://www.youtube.com/user/CasinoRamaResort"></a>      
+                    <a class="fa fa-youtube fa-2x" href="https://www.youtube.com/user/CasinoRamaResort"></a>
                 </p>
-                          
+
                 </div>
             </div>
           </div>
 
-       
-      
+
+
 
       </div>
 
@@ -92,11 +97,11 @@
           <div class="card-header" id="headingOne">
             <h5 class="mb-0">
               <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="accordionaboutbutton">
-                About Casino Rama 
+                About Casino Rama
               </button>
             </h5>
           </div>
-      
+
           <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
                 <div class="jumbotron">
@@ -125,7 +130,7 @@
                </div>
           </div>
         </div>
-       
+
         </div>
       </div>
 
