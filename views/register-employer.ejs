@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/admin-login.css">
+
+    <!--Font Awesome CDN-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+		<link rel="stylesheet" href="/bower_components/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css">
+	</head>
+	<body>
+    <form class="form-register col col-md-6" method="post" >
+			<h1 class="h3 mb-3 font-weight-normal"><%= title%></h1>
+			<!-- hidden input field to set the user type -->
+			<input type="text" name="userType" value="employer" style="display: none;">
+			<div class="form-group">
+							<label for="companyName">Company Name:</label>
+							<input id="companyName" name="companyName" type="text" class="form-control">
+			</div>
+			<div class="form-group">
+							<label for="contactPerson">Contact Person:</label>
+							<input id="contactPerson" name="contactPerson" type="text" class="form-control">
+			</div>
+			<div class="form-group">
+							<label for="companySite">Company Website:</label>
+							<input id="companySite" name="companySite" type="url" class="form-control">
+			</div>
+			<div class="form-group">
+							<label for="companyCity">City:</label>
+							<input id="companyCity" name="city" type="text" class="form-control">
+			</div>
+			<div class="form-group">
+				<label for="province">Province:</label>
+				<select class="form-control form-control-sm" name="province" id="province" type="text">
+					<option value="">select a province</option>
+					<option value="Alberta">Alberta</option>
+					<option value="British-Columbia">British Columbia</option>
+					<option value="New-Brunswick">New Brunswick</option>
+					<option value="Newfoundland-Labrador">Newfoundland & Labrador</option>
+					<option value="Northwest-Territories">Northwest Territories</option>
+					<option value="Nova-Scotia">Nova Scotia</option>
+					<option value="Nunavut">Nunavut</option>
+					<option value="Ontario">Ontario</option>
+					<option value="Prince-Edward-Island">Prince Edward Island</option>
+					<option value="Quebec">Quebec</option>
+					<option value="Saskatchewan">Saskatchewan</option>
+					<option value="Yukon">Yukon</option>
+				</select>
+			</div>
+			<div class="form-group">
+							<label for="postalCode">Postal Code:</label>
+							<input id="postalCode" name="postalCode" type="text" class="form-control">
+			</div>
+			<div class="form-group">
+							<label for="-phone">Contact Number:</label>
+							<input id="phone" name="phone" type="tel" class="form-control">
+			</div>
+			<div class="form-group">
+				<div class="form-group">
+					<label for="oesc">Are you currently working with an Employment Ontario Employment Services Centre (Employment Resource Centre?</label>
+					<select class="form-control form-control-sm" name="oesc" id="oesc" type="text">
+						<option value="null">select a option</option>
+						<option value="true">Yes</option>
+						<option value="false">No</option>
+					</select>
+				</div>
+			</div>
+			<div class="info-general form-group">
+				<label>Email Address:</label>
+				<input class="form-control" name="username" id="companyUsername" type="email" required>
+				<label for="password">Password:</label>
+				<input class="form-control" type="password" name="password" id="password" type="password" required>
+				<label>Confirm Password:</label>
+				<input class="form-control" type="password" name="confirm" id="confirm" type="password" required>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+			<a href="/" role="button" class="btn btn-lg btn-secondary btn-block">Back</a>
+		</form>
+	</body>
+</html>

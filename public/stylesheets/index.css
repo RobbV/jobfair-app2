@@ -1,0 +1,94 @@
+body, main {
+    padding: 0;
+    margin: 0;
+}
+/* main button a {
+	text-decoration: none;
+	color: #fff;
+	outline: 1px solid green;
+}
+main button a:hover {
+	text-decoration: none;
+	color: #fff;
+} */
+/* Modals */
+
+div.form-group {
+    padding: 1%;
+}
+
+div#seeker, div#employer {
+    display: none;
+    padding: 2%;
+}
+button#submit {
+    display: none;
+}
+
+h6 {
+    font-size: 28px;
+}
+
+button#btn_seeker, button#btn_employer {
+    width: 90%;
+    margin: 5px auto;
+}
+
+/* Main */
+
+/* Mobile */
+@media only screen and (max-width: 574px) {
+    main {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+    }
+
+    main section {
+       display: flex;
+      justify-content: center;
+
+    }
+    main section button, main section a {
+        margin: 1%;
+    }
+    main img:nth-child(1) {
+        margin: 5% auto 7%;
+        width: 90%;
+        height: auto;
+    }
+    main img:nth-child(2) {
+        margin: 0 auto 10%;
+        width: 40%;
+        height: auto;
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width: 575px) {
+    main {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+    }
+    main section {
+        display: flex;
+        justify-content: center;
+    }
+    main section button, main section a {
+        margin: 1%;
+    }
+    main img:nth-child(1) {
+        margin: 0 auto;
+        width: auto;
+        height: 60vh;
+        max-width: 100vw;
+    }
+    main img:nth-child(2) {
+        margin: 0 auto;
+        width: 25%;
+        height: auto;
+    }
+}

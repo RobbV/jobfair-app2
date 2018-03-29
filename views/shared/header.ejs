@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <title><%= title %></title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="desktop">
+                <!-- Clicking Icon while not signed in will prompt user to sign in or register, otherwise will go to their profile -->
+                <li><a href=""><i class="fas fa-user-circle fa-lg"></i></a></li>
+                <li><a href="">Home</a></li>
+                <li><a href="">Employers</a></li>
+                <li><a href="">Job Listings</a></li>
+                <li><a href="">Help Center</a></li>
+                <form class="form-inline">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-dark" type="submit">Search</button>
+                </form>
+            </ul>
+            <ul class="tablet">
+                    <li><a href=""><i class="fas fa-user-circle fa-lg"></i></a></li>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Employers</a></li>
+                    <li><a href="">Job Listings</a></li>
+                    <li><a href="">Help Center</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="btn" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-search fa-lg"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <input type="text" placeholder="Search" class="dropdown-item">
+                        </div>
+                    </li>
+            </ul>
+            <ul class="mobile">
+                <li style="height: 32px;"><a href=""><i class="fas fa-user-circle fa-2x"></i></a></li>
+                <li class="dropdown">
+                    <a class="btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
+                
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a href="" class="dropdown-item">Home</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="" class="dropdown-item">Employers</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="" class="dropdown-item">Job Listings</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="" class="dropdown-item">Help Center</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="btn" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-search fa-2x"></i>
+                    </a>
+                
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <input type="text" placeholder="Search" class="dropdown-item">
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>

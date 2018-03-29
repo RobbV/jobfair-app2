@@ -1,0 +1,54 @@
+body{
+
+}
+#jumbotronbanner {
+    background: #358CCE;
+    color: #FFF;
+    border-radius: 0px;
+}
+.jumbotron-sm { 
+    padding-top: 24px;
+    padding-bottom: 24px; 
+}
+#paddingSet {
+  padding-top: 24px;
+    padding-bottom: 24px; 
+}
+#jumbotronbanner small {
+    color: #FFF;
+}
+
+  .carousel-item {
+    height: 65vh;
+    min-height: 300px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  
+  .portfolio-item {
+    margin-bottom: 30px;
+  }
+  #accordionaboutbutton {
+    font-size: 30px;
+    color: white;
+    text-decoration: none;
+  }
+  #accordionaboutbutton:hover {
+    background: #358CCE;
+    color: black;
+  }
+  #accordionlinksbutton {
+    font-size: 30px;
+    color: white;
+    text-decoration: none;
+  }
+  #accordionlinksbutton:hover {
+    background: #358CCE;
+    color: black;
+  }
+  .card-header {
+    background-color: #358CCE;
+  }
