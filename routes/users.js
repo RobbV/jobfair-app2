@@ -78,6 +78,18 @@ router.get('/profile', (req,res,next) => {
 		title: 'profile pages'
 	});
 });
-
-
+//GET: jobs list pages
+router.get('/jobs-list', (req,res,next) => {
+	res.render('main',{
+		title: 'SMWDB',
+		user: req.user
+	});
+});
+//GET the Employers list page
+router.get('/employers-list', (req,res,next) => {
+	res.render('main',{
+		title: 'SMWDB',
+		user: req.user
+	});
+});
 module.exports = router;

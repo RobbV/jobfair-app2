@@ -8,13 +8,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/admin-login.css">
 		<link rel="icon" href="/images/icon_gears.ico">
+		<!--animate css CDN-->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css" integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw" crossorigin="anonymous">
     <!--Font Awesome CDN-->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
         crossorigin="anonymous">
 		<link rel="stylesheet" href="/bower_components/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css">
 	</head>
 	<body>
-	    <form class="form-signin" method="post" >
+	    <form class="form-signin" method="post">
+				<% if (messages.length > 0) { %>
+				<div class="alert alert-warning animated flash"><%= messages %></div>
+				<%}%>
 	        <h1 class="h3 mb-3 font-weight-normal">LOGIN</h1>
 	        <label for="inputEmail" class="sr-only">Email address</label>
 	        <input type="email" name="username" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>

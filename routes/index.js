@@ -25,6 +25,28 @@ router.get('/home', (req,res,next) => {
 		user: req.user
 	})
 });
+//GET the FAQ pages
+router.get('/faq', (req,res,next) => {
+	res.render('faq', {
+		title: 'SMWDB',
+		user: req.user
+	});
+});
+//GET Help Center
+router.get('/help-center', (req,res,next) => {
+	res.render('helpCenter',{
+		title: 'SMWDB',
+		user: req.user
+	});
+});
+//GET employers
+router.get('/employers', (req,res,next) => {
+	res.render('employers',{
+	 title: 'Employer',
+	 message: 'Welcome to the Employer Area. Here you will be able to view all employee profile pages of companies that are  looking to hire job seekers.',
+		user: req.user
+	});
+});
 // user
 //============================================
 //GET: the user register page
@@ -95,12 +117,13 @@ router.post('/register-employer', (req,res,next) => {
 //============================================
 // GET: login page
 router.get('/login', (req,res,next) => {
-	// // check for invalid login message in the session object
-	// let messages = req.session.messages || [];
-	// // clear the session messages
-	// req.session.messages = [];
+	// check for invalid login message in the session object
+	let messages = req.session.messages || [];
+	// clear the session messages
+	req.session.messages = [];
 	res.render('login', {
-		title: "Login to access your account"
+			title: 'Login',
+			messages: messages
 	});
 });
 // POST: /login
