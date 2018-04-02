@@ -1,27 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Simcoe Muskoka Workforce Development Board (SMWDB)">
+	<meta name="author" content="RE:404">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="/stylesheets/job-seeker-profile.css">
+	<link rel="icon" href="/images/icon_gears.ico">
+	<!--Font Awesome CDN-->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"crossorigin="anonymous">
     <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/main.css">
     <title><%= title %></title>
 </head>
 <body>
     <header>
-        <nav>
+        <nav class="navbar navbar-dark bg-primary">
+					<!-- login, register, and logout buttons -->
+					<div class="user-controls">
+						<%if (user == undefined) {%>
+							<a role="button" class="btn btn-outline-light btn-sm" href="/login">Login</a>
+							<a role="button" class="btn btn-outline-light btn-sm" href="/">Register</a>
+						<%} else {%>
+						<a role="button" class="btn btn-outline-light btn-sm" href="/logout">Logout</a>
+						<%}%>
+					</div>
             <ul class="desktop">
                 <!-- Clicking Icon while not signed in will prompt user to sign in or register, otherwise will go to their profile -->
-                <li><a href=""><i class="fas fa-user-circle fa-lg"></i></a></li>
-                <li><a href="">Home</a></li>
-                <li><a href="">Employers</a></li>
-                <li><a href="">Job Listings</a></li>
-                <li><a href="">Help Center</a></li>
+                <li><a href="/users"><i class="fas fa-user-circle fa-lg"></i></a></li>
+								<%if(user == undefined) {%>
+									<li><a href="/home">Home</a></li>
+									<li><a href="/help-center">Help Center</a></li>
+									<li><a href="/faq">FAQ</a></li>
+								<%} else {%>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/employers-list">View Employers</a></li>
+                <li><a href="/jobs-list">Job Listings</a></li>
+                <li><a href="/help-center">Help Center</a></li>
+								<%}%>
                 <form class="form-inline">
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-dark" type="submit">Search</button>
+                    <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
             </ul>
             <ul class="tablet">
@@ -43,7 +65,7 @@
                 <li style="height: 32px;"><a href=""><i class="fas fa-user-circle fa-2x"></i></a></li>
                 <li class="dropdown">
                     <a class="btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
-                
+
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a href="" class="dropdown-item">Home</a>
                         <div class="dropdown-divider"></div>
@@ -58,7 +80,7 @@
                     <a href="#" class="btn" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-search fa-2x"></i>
                     </a>
-                
+
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <input type="text" placeholder="Search" class="dropdown-item">
                     </div>

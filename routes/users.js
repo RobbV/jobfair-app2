@@ -29,8 +29,9 @@ router.get('/', functions.isLoggedIn, (req, res, next) =>{
 			address: user.address
 		});
 	} else {
-		res.render('employers/employer-booth.ejs', {
-			title: 'Welcome',
+		res.render('employers/employerProfile.ejs', {
+			title: 'Employer Profile',
+    message: 'Welcome to your Employer Profile. Here you will be able to create a profile page for your company to hire job seekers during your job fair.',
 			// user details
 			user: req.user,
 			contactPerson: user.contactPerson,

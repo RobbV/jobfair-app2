@@ -7,15 +7,31 @@ const User = require('../models/user.js');
 const Employer = require('../models/employer.js');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'SMWDB' });
 });
-
+// GET the Main info page
+router.get('/main', (req,res,next) => {
+	res.render('homepage', {
+		title: 'SMWDB',
+		message: 'Simcoe Muskoka Workforce Development Board. On this page you will be able to choose from either Employer, Job Seeker or to just Browse. After you choose which option is right for you, specific instructions for what is next will appear on the next page. Thank you for visiting the Simcoe Muskoka Workforce Development Board.',
+		user: req.user
+	});
+});
+//GET home page
+router.get('/home', (req,res,next) => {
+	res.render('homepage', {
+		title: 'SMWDB',
+    message: 'Simcoe Muskoka Workforce Development Board. On this page you will be able to choose from either Employer, Job Seeker or to just Browse. After you choose which option is right for you, specific instructions for what is next will appear on the next page. Thank you for visiting the Simcoe Muskoka Workforce Development Board.',
+		user: req.user
+	})
+});
 // user
 //============================================
 //GET: the user register page
 router.get('/register-user', (req,res,next) => {
 	res.render('register-user',{
-		title: 'Sign up'
+		title: 'Sign up',
+		user: req.user
 	});
 });
 //POST:
@@ -45,7 +61,8 @@ router.post('/register-user', (req,res,next) => {
 //============================================
 router.get('/register-employer', (req,res,next) =>{
 	res.render('register-employer', {
-		title: 'Register your company'
+		title: 'Register your company',
+		user: req.user
 	});
 });
 // POST: register employer

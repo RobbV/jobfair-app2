@@ -31,9 +31,13 @@
    <div class="jumbotron-sm" id="jumbotronbanner">
 		 <% if(approved == undefined){%>
 			 <div class="alert alert-warning" role="alert">
-				Your account is in the process being approved - you can setup your company's profile but it will not be visable to others.
+				Your account is in the process of being approved - you can setup your company's profile but it will not be visible to others.
 			</div>
-		<%}%>
+		<%} else if(approved == false) {%>
+			<div class="alert alert-danger" role="alert">
+  			Your Account has not been approved - your account will not be visible
+			</div>
+			<%}%>
       <div class="container">
           <div class="row">
               <div class="col-sm-12 col-lg-12">
@@ -47,9 +51,6 @@
       </div>
       <!-- container -->
   </div>
-
-
-
   <!-- Page Content -->
   <div class="container" id="paddingSet">
     <!-- Portfolio Item Row -->
