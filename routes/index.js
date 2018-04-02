@@ -5,6 +5,8 @@ const passport = require('passport');
 //required models
 const User = require('../models/user.js');
 const Employer = require('../models/employer.js');
+//nodemailer
+const nodemailer = require('nodemailer');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'SMWDB' });
@@ -47,6 +49,55 @@ router.get('/employers', (req,res,next) => {
 		user: req.user
 	});
 });
+//GET contact Page
+router.get('/contact', (req,res,next) => {
+	res.render('contact', {
+		title: 'SMWDB',
+		user: req.user
+	});
+});
+//nodemailer to send question SMWDB
+//----------------------------------
+//POST: process and send the users message
+router.post('/send', (req, res, next) => {
+	let from = req.body.name + '<' + req.body.email + '>';
+	let subject = req.body.subject;
+	let message = req.body.message;
+
+//use nodemailer to process and send an email
+let transporter = nodemailer.createTransport({
+		service: 'gmail',
+		secure: false,
+		port: 25,
+		auth: {
+			user: 'Comp2106RobbV@gmail.com',
+			pass: '21Comp06testemail'
+		},
+		tls: {
+			rejectUnauthorized: false
+		}
+	});
+	let HelperOptions = {
+		from: from,
+		to: 'rob.vdg.14@gmail.com',
+		subject: subject,
+		text: message
+	}
+	transporter.sendMail(HelperOptions, (error, info) =>{
+		if(error){
+			return console.log(error);
+		}
+		console.log("the message was sent");
+		console.log(info);
+	});
+	res.render('contact', {
+		title: 'SMWDB',
+		user: req.user
+	});
+});
+
+//----------------------------------
+//end to nodemailer for the main contact page
 // user
 //============================================
 //GET: the user register page

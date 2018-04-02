@@ -1,0 +1,261 @@
+<% include shared/header.ejs %>
+
+    <!-- Page Jumbotron -->
+    <div class="jumbotron jumbotron-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <h1 class="h1">
+                        Contact us
+                        <small>Feel free to contact us</small>
+                    </h1>
+                </div>
+            </div>
+            <!-- .row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- jumbotron jumbotron-sm -->
+
+    <!-- Contact Form -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="well well-sm">
+                    <form class="form" action="send" method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">
+                                        Name</label>
+                                    <input type="text" class="form-control" name="name" placeholder="Enter name" required="required" />
+                                </div>
+                                <!-- form-group -->
+
+                                <div class="form-group">
+                                    <label for="email">
+                                        Email Address</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-envelope"></span>
+                                        </span>
+                                        <input type="email" class="form-control" name="email" placeholder="Enter email" required="required" />
+                                    </div>
+                                    <!-- input-group -->
+                                </div>
+                                <!-- form-group -->
+
+                                <div class="form-group">
+                                    <label for="subject">
+                                        Subject</label>
+                                    <select id="subject" name="subject" class="form-control" required="required">
+                                        <option value="na" selected="">Choose One:</option>
+                                        <option value="service">General Customer Service</option>
+                                        <option value="Jobfair">Job Fair Support</option>
+                                        <option value="complaints">Complaints</option>
+                                        <option value="product">Other</option>
+                                    </select>
+                                </div>
+                                <!-- form-group -->
+                            </div>
+                            <!-- col-md-6 -->
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">
+                                        Message</label>
+                                    <textarea name="message" id="message" class="form-control" rows="7" cols="20" required="required" placeholder="Message"></textarea>
+                                </div>
+                                <!-- form-group -->
+                            </div>
+                            <!-- col-md-6 -->
+
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-dark pull-right" id="btnContactUs">
+                                    Send Message</button>
+                            </div>
+                            <!-- col-md-12 -->
+                        </div>
+                        <!-- .row -->
+                    </form>
+                </div>
+                <!-- .well well-sm -->
+            </div>
+            <!-- .col-md-8 -->
+
+
+            <div class="col-md-4">
+                <form>
+                    <legend>
+                        <span class="fa fa-globe"></span> Our office</legend>
+                    <address>
+                        <strong>Simcoe Muskoka Workforce Development Board</strong>
+                        <br> 18 Alliance Blvd. Unit 22,
+                        <br> Barrie, ON L4M 5A5
+                        <br>
+                        <i class="fa fa-phone"></i>
+                        <abbr title="Phone">
+                            Phone:</abbr>
+                        705-725-1011
+                        <br>
+                        <i class="fa fa-phone"></i>
+                        <abbr title="Phone">
+                            Alternate:</abbr>
+                        1-800-337-4598
+                        <br>
+                        <i class="fa fa-fax"></i>
+                        <abbr title="Phone">
+                            Fax:</abbr>
+                        1-888-739-8347
+                    </address>
+                    <!-- Social Media Icons -->
+                    <a class="fa fa-linkedin-square fa-2x" href="https://www.linkedin.com/in/smwdb"></a>
+                    <a class="fa fa-twitter-square fa-2x" href="https://twitter.com/SMWDB"></a>
+                    <a class="fa fa-facebook-square fa-2x" href="https://www.facebook.com/Simcoe-Muskoka-Workforce-Development-Board-171955836235732/"></a>
+                    <a class="fa fa-youtube-square fa-2x" href="https://www.youtube.com/channel/UC4LNCkWeCGaA_8pgEwzf9XA"></a>
+                </form>
+            </div>
+            <!-- .col-md-4 -->
+        </div>
+        <!-- .row -->
+    </div>
+    <!-- .container -->
+    <br>
+    <br>
+
+    <!-- Google Maps Location -->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2850.177216553547!2d-79.68725838447754!3d44.40900907910261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882aa31a79d3e70b%3A0x9d74cd49b8c2b7fa!2s18+Alliance+Blvd+%2322%2C+Barrie%2C+ON+L4M+5G6!5e0!3m2!1sen!2sca!4v1520365870836"
+        width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+    <br>
+
+
+    <div class="container">
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="team">
+            <h1 class="mt-4 mb-3">Our Team Members</h1>
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <img class="img-rounded" alt="team-photo" src="images/rob.png" width="100%">
+                        <div class="team-member">
+                            <h4>Rob Shepard</h4>
+                            <p>Project Facilitator</p>
+                        </div>
+                        <!-- team-member -->
+                    </div>
+                    <!--col-lg-4 -->
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <img class="img-rounded" alt="team-photo" src="images/susan.png" width="100%">
+                        <div class="team-member">
+                            <h4>Susan Laycock</h4>
+                            <p>Executive Director</p>
+                        </div>
+                        <!-- team-member -->
+                    </div>
+                    <!--col-lg-4 -->
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <img class="img-rounded" alt="team-photo" src="images/judith.png" width="100%">
+                        <div class="team-member">
+                            <h4>Judith Johnston</h4>
+                            <p>Project Facilitator/Office Manager</p>
+                        </div>
+                        <!-- team-member -->
+                    </div>
+                    <!-- col-lg-4 -->
+                </div>
+                <!-- row text-center -->
+            </div>
+            <!-- container -->
+        </div>
+        <!-- team -->
+    </div>
+    <!-- /.container -->
+    <br>
+
+
+    <!-- Page Jumbotron -->
+    <div class="jumbotron jumbotron-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <h1 class="h1">
+                        <small>Would you like to find out more information about our corporation ?</small>
+                        <a class="btn btn-dark" href="mailto:susan@smwdb.com" role="button">Click Here</a>
+                    </h1>
+                </div>
+            </div>
+            <!-- .row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- jumbotron jumbotron-sm -->
+
+
+    <!-- Page Content -->
+    <div class="container">
+        <h1 class="mt-4 mb-3">Board of Directors
+            <small>See Below</small>
+        </h1>
+        <div class="container marketing">
+
+            <!-- Three columns of text below the carousel -->
+            <div class="row">
+                <div class="col-md-3">
+                    <img class="rounded-circle" src="images/kelly.png" alt="Kelly - OW Advisor" width="140" height="140">
+                    <h2>Kelly Scott</h2>
+                    <p>OW Advisor</p>
+                </div>
+                <!-- /.col-lg-4 -->
+                <div class="col-md-3">
+                    <img class="rounded-circle" src="images/terry.png" alt="Terry - Director Labour" width="140" height="140">
+                    <h2>Terry Heittola</h2>
+                    <p>Director Labour
+                    </p>
+                </div>
+                <!-- /.col-lg-4 -->
+                <div class="col-md-3">
+                    <img class="rounded-circle" src="images/susan-02.png" alt="Susan - Executive Director" width="140" height="140">
+                    <h2>Susan Laycock</h2>
+                    <p>Executive Director</p>
+                </div>
+                <!-- /.col-lg-4 -->
+                <div class="col-md-3">
+                    <img class="rounded-circle" src="images/mac.png" alt="Mac - Director Education and Training" width="140" height="140">
+                    <h2>Mac Greaves</h2>
+                    <p>Director Education and Training</p>
+                </div>
+                <!-- /.col-lg-4 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-md-3">
+                    <img class="rounded-circle" src="images/carl.png" alt="Carl , Director, Visible Minorities" width="140" height="140">
+                    <h2>Carl Persaud</h2>
+                    <p>Director, Visible Minorities</p>
+                </div>
+                <!-- /.col-lg-4 -->
+                <div class="col-md-3">
+                    <img class="rounded-circle" src="images/josee.png" alt="Josee, Director Francophone" width="140" height="140">
+                    <h2>Josee Lefebvre</h2>
+                    <p>Director Francophone</p>
+                </div>
+                <!-- /.col-lg-4 -->
+                <div class="col-md-3">
+                    <img class="rounded-circle" src="images/charlotte.png" alt="Charlotte, Co-chair" width="140" height="140">
+                    <h2>Charlotte Parliament</h2>
+                    <p>Co-chair</p>
+                </div>
+                <!-- /.col-lg-4 -->
+                <!--  <div class="col-md-3">
+
+                        <img class="rounded-circle" src="images/mac.png" alt="Generic placeholder image" width="140" height="140">
+              <h2>Heading</h2>
+              <p>Donec sed odio</p>
+            </div>-->
+            </div>
+        </div>
+    </div>
+<% include shared/footer.ejs%>
