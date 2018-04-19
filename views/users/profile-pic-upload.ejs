@@ -15,25 +15,25 @@
         crossorigin="anonymous">
 		<link rel="stylesheet" href="/bower_components/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css">
 	</head>
-	<body>
-	    <form class="form-signin" method="post" enctype="multipart/form-data">
-				<%if(msg !== undefined){%>
-					<p class="<%=msgType%>"><%=msg%></p>
-				<%} else {
+	    <form class="form-signin" enctype="multipart/form-data" method="post">
+				<body>
+					<%if(msg !== undefined){%>
+						<p class="<%=msgType%>"><%=msg%></p>
+					<%} else {
 
-				}%>
-	        <h1 class="h3 mb-3 font-weight-normal">Upload a Coverletter</h1>
-					<div class="form-group">
-							<label for="inputFile">Choose File</label>
-							<div class="input-group">
-											<div class="custom-file">
-												<input type="file" name="myCoverletter" class="custom-file-input" id="inputGroupFile02">
-												<label name="myCoverletter" class="custom-file-label" for="inputGroupFile02">Choose Cover Letter</label>
-											</div>
-										</div>
-					</div>
+					}%>
+					<h1 class="h3 mb-3 font-weight-normal">Upload a Profile Picture</h1>
+				<div class="form-group">
+						<label for="inputFile">Choose Image</label>
+						<div class="input-group">
+							<div class="custom-file">
+								<input type="file" name="myPic" class="custom-file-input" id="inputGroupFile02">
+								<label name="myPic" class="custom-file-label" for="inputGroupFile02">Choose Profile Picture</label>
+							</div>
+						</div>
+				</div>
 
-	        <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top: 1rem;">Upload my Coverletter</button>
+	        <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top: 1rem;">upload my image</button>
 					<a href="/users" role="button" class="btn btn-lg btn-secondary btn-block">Back</a>
 	        <p class="mt-5 mb-3 text-muted">Simcoe Muskoka Workforce Development Board</p>
 	      </form>

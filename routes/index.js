@@ -36,7 +36,7 @@ router.get('/faq', (req,res,next) => {
 });
 //GET Help Center
 router.get('/help-center', (req,res,next) => {
-	res.render('helpCenter',{
+	res.render('help-center',{
 		title: 'SMWDB',
 		user: req.user
 	});

@@ -20,24 +20,48 @@ const storageCl = multer.diskStorage({
 		callback(null, file.fieldname + '-' + req.user.username + path.extname(file.originalname));
 	}
 });
+
+const storageImg = multer.diskStorage({
+	destination: './public/uploads/images',
+	filename: (req, file, callback) => {
+		callback(null, file.fieldname + '-' + req.user.username + path.extname(file.originalname));
+	}
+});
+
+//init upload
+const uploadImg = multer({
+   storage: storageImg,
+	 limits: {fileSize: 2000000},
+	 fileFilter: (req, file, cb) => {
+		 checkImageType(file, cb);
+	 }
+}).single('myPic')
+
 // init upload
 const upload = multer({
 	storage: storage,
-	limits: {fileSize: 1000000}
+	limits: {fileSize: 1000000},
+	fileFilter: (req,file,cb) =>{
+		checkFileType(file, cb);
+	}
 }).single('myResume');
 // init upload
 const uploadCl = multer({
 	storage: storageCl,
-	limits: {fileSize: 1000000}
+	limits: {fileSize: 1000000},
+	fileFilter: (req,file,cb) =>{
+		checkFileType(file, cb);
+	}
 }).single('myCoverletter');
 
+const app = express();
 /* GET users listing. */
 router.get('/', functions.isLoggedIn, (req, res, next) =>{
 	// get the users details from the db
  User.findOne(
 	 {'username': req.user.username},
 	 // list of information to grab from the db
-	 'firstname lastname gender dateofbirth city province postalcode phone address userType companyName contactPerson companySite oesc approved resume coverletter', (err,user) => {
+	 'firstname lastname gender dateofbirth city province postalcode phone address userType companyName contactPerson companySite oesc approved resume coverletter profilePic', (err,user) => {
 		if(err){
 			console.log(err);
 		}
@@ -56,7 +80,9 @@ router.get('/', functions.isLoggedIn, (req, res, next) =>{
 			phone: user.phone,
 			address: user.address,
 			resume: user.resume,
-			coverletter: user.coverletter
+			coverletter: user.coverletter,
+			profileImg: user.profilePic,
+			imgLocation: 'uploads/images/' + user.profilePic
 		});
 	} else {
 		res.render('employers/employerProfile.ejs', {
@@ -120,7 +146,6 @@ router.post('/upload-resume', functions.isLoggedIn, (req,res) => {
 		// check if the user has a saved resume
 		if(user.resume) {
 			let file = "./public/uploads/resumes/" + user.resume
-			console.log(file);
 			// delete the old resume and upload the new one and save it to mongodb
 			try {
 				 fs.unlinkSync(file);
@@ -133,7 +158,7 @@ router.post('/upload-resume', functions.isLoggedIn, (req,res) => {
 							 msgType: 'alert alert-danger'
 						 });
 					 } else {
-						 console.log(req.file.filename);
+						 console.log(req.file);
 						 let username = req.user.username;
 						 User.update({username:username},
 							 { $set: {
@@ -150,6 +175,30 @@ router.post('/upload-resume', functions.isLoggedIn, (req,res) => {
 				 });
 				} catch (err) {
 					console.log(err);
+					upload(req, res, (err) => {
+ 					 if(err){
+ 						 console.log(err);
+ 						 res.render('users/upload-resume', {
+ 							 title: 'Upload Resume',
+ 							 msg: err,
+ 							 msgType: 'alert alert-danger'
+ 						 });
+ 					 } else {
+ 						 console.log(req.file);
+ 						 let username = req.user.username;
+ 						 User.update({username:username},
+ 							 { $set: {
+ 								 resume: req.file.filename
+ 							 }}, null, (err) => {
+ 							 if(err){
+ 								 console.log(err);
+ 							 }
+ 							 else {
+ 								 res.redirect('/users');
+ 							 }
+ 						 });
+ 					 }
+ 				 });
 				}
 		}else{
 			upload(req, res, (err) => {
@@ -161,6 +210,7 @@ router.post('/upload-resume', functions.isLoggedIn, (req,res) => {
 						msgType: 'alert alert-danger'
 					});
 				} else {
+					console.log(req.file);
 					console.log(req.file.filename);
 					let username = req.user.username;
 					User.update({username:username},
@@ -181,7 +231,10 @@ router.post('/upload-resume', functions.isLoggedIn, (req,res) => {
 });
 // GET Upload coverletter
 router.get('/upload-coverletter', functions.isLoggedIn, (req,res,next) => {
-	res.render('users/upload-coverletter');
+	res.render('users/upload-coverletter', {
+		title: 'upload coverletter',
+		msg: undefined
+	});
 });
 router.post('/upload-coverletter', functions.isLoggedIn, (req,res) => {
 	// get the users details from the db
@@ -205,6 +258,7 @@ router.post('/upload-coverletter', functions.isLoggedIn, (req,res) => {
 						});
 					} else {
 						console.log(req.file.filename);
+						console.log(file);
 						let username = req.user.username;
 						User.update({username:username},
 							{ $set: {
@@ -221,6 +275,31 @@ router.post('/upload-coverletter', functions.isLoggedIn, (req,res) => {
 				});
 			} catch(err) {
 				console.log(err)
+				uploadCl(req, res, (err) => {
+					if(err){
+						console.log(err);
+						res.render('users/upload-coverletter', {
+							title: 'Upload coverletter',
+							msg: err,
+							msgType: 'alert alert-danger'
+						});
+					} else {
+						console.log(req.file.filename);
+						console.log(file);
+						let username = req.user.username;
+						User.update({username:username},
+							{ $set: {
+								coverletter: req.file.filename
+							}}, null, (err) => {
+							if(err){
+								console.log(err);
+							}
+							else {
+								res.redirect('/users');
+							}
+						});
+					}
+				});
 			}
 		} else {
 			uploadCl(req, res, (err) => {
@@ -250,6 +329,109 @@ router.post('/upload-coverletter', functions.isLoggedIn, (req,res) => {
 		}
 	});
 });
+// GET upload Profile Pic
+router.get('/upload-pic', functions.isLoggedIn, (req, res, next) => {
+	res.render('users/profile-pic-upload.ejs', {
+		title: "Welcome",
+		msg: undefined
+	});
+});
+// POST upload users image
+router.post('/upload-pic', functions.isLoggedIn, (req,res) => {
+	// get the users details from the db
+ User.findOne(
+	 {'username': req.user.username},
+	 // list of information to grab from the db
+	 'profilePic', (err,user) => {
+		if(err){
+			console.log(err);
+		}
+		// check if the user has a saved resume
+		if(user.profilePic) {
+			let file = "./public/uploads/images/" + user.profilePic
+			// delete the old resume and upload the new one and save it to mongodb
+			try {
+				 fs.unlinkSync(file);
+				 uploadImg(req, res, (err) => {
+					 if(err){
+						 console.log(err);
+						 res.render('users/upload-pic', {
+							 title: 'Upload picture',
+							 msg: err,
+							 msgType: 'alert alert-danger'
+						 });
+					 } else {
+						 console.log(req.file);
+						 let username = req.user.username;
+						 User.update({username:username},
+							 { $set: {
+								 profilePic: req.file.filename
+							 }}, null, (err) => {
+							 if(err){
+								 console.log(err);
+							 }
+							 else {
+								 res.redirect('/users');
+							 }
+						 });
+					 }
+				 });
+				} catch (err) {
+					console.log(err);
+					uploadImg(req, res, (err) => {
+ 					 if(err){
+ 						 console.log(err);
+ 						 res.render('users/upload-pic', {
+ 							 title: 'Upload Picture',
+ 							 msg: err,
+ 							 msgType: 'alert alert-danger'
+ 						 });
+ 					 } else {
+ 						 console.log(req.file);
+ 						 let username = req.user.username;
+ 						 User.update({username:username},
+ 							 { $set: {
+ 								 profilePic: req.file.filename
+ 							 }}, null, (err) => {
+ 							 if(err){
+ 								 console.log(err);
+ 							 }
+ 							 else {
+ 								 res.redirect('/users');
+ 							 }
+ 						 });
+ 					 }
+ 				 });
+				}
+		}else{
+			uploadImg(req, res, (err) => {
+				if(err){
+					console.log(err);
+					res.render('users/upload-pic', {
+						title: 'Upload Picture',
+						msg: err,
+						msgType: 'alert alert-danger'
+					});
+				} else {
+					console.log(req.file);
+					console.log(req.file.filename);
+					let username = req.user.username;
+					User.update({username:username},
+						{ $set: {
+							profilePic: req.file.filename
+						}}, null, (err) => {
+						if(err){
+							console.log(err);
+						}
+						else {
+							res.redirect('/users');
+						}
+					});
+				}
+			});
+		}
+	});
+});
 // GET Profile page
 router.get('/profile', functions.isLoggedIn, (req,res,next) => {
 	res.render('users/employeeProfile.ejs', {
@@ -258,7 +440,7 @@ router.get('/profile', functions.isLoggedIn, (req,res,next) => {
 });
 //GET: jobs list pages
 router.get('/jobs-list', (req,res,next) => {
-	res.render('main',{
+	res.render('users/jobList',{
 		title: 'SMWDB',
 		user: req.user
 	});
@@ -270,4 +452,25 @@ router.get('/employers-list', (req,res,next) => {
 		user: req.user
 	});
 });
+// allowed file type function
+const checkFileType = function(file, cb){
+	const fileTypes = /docx|pdf|txt/;
+	const extType = fileTypes.test(path.extname(file.originalname).toLocaleLowerCase());
+	if(extType){
+		return cb(null, true);
+	} else {
+		cb('Error: Invalid File Type please upload .pdf .docx .txt')
+	}
+}
+// file check function
+const checkImageType = function(file, cb){
+	const fileTypes = /jpg|jpeg|png|gif|svg/;
+	const extType = fileTypes.test(path.extname(file.originalname).toLocaleLowerCase());
+	const mimeType = fileTypes.test(file.mimetype);
+	if(mimeType && extType){
+		return cb(null, true);
+	} else {
+		cb('Error: That File is not an image')
+	}
+}
 module.exports = router;
