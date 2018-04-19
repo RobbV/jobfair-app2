@@ -12,11 +12,14 @@ const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 //nodemailer
 const nodemailer = require('nodemailer');
+//multer
+const multer = require('multer');
 //database configuration file
 const config = require('./config/globals');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+let admins = require('./routes/admins');
 
 var app = express();
 

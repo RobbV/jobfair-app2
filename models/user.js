@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema({
 	employmentStatus: String,
 	oesc: Boolean,
 	resume: String,
+	coverletter: String,
 	// employer needed fields
 	companyName: String,
 	contactPerson: String,
