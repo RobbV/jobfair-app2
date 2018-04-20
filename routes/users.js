@@ -2,9 +2,10 @@ var express = require('express');
 var router = express.Router();
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 const functions = require('../config/functions');
 const User = require('../models/user');
-const fs = require('fs');
+const Job = require('../models/job');
 
 // storage engine
 const storage = multer.diskStorage({
@@ -85,21 +86,28 @@ router.get('/', functions.isLoggedIn, (req, res, next) =>{
 			imgLocation: 'uploads/images/' + user.profilePic
 		});
 	} else {
-		res.render('employers/employerProfile.ejs', {
-			title: 'Employer Profile',
-    message: 'Welcome to your Employer Profile. Here you will be able to create a profile page for your company to hire job seekers during your job fair.',
-			// user details
-			user: req.user,
-			contactPerson: user.contactPerson,
-			gender: user.gender,
-			dateofbirth: user.dateofbirth,
-			city: user.city,
-			province: user.province,
-			postalcode: user.postalcode,
-			phone: user.phone,
-			address: user.address,
-			approved: user.approved
-		})
+		Job.find({ 'username': req.user.username }, ( err, jobs) => {
+				if(err) {
+					console.log(err);
+				} else {
+					res.render('employers/employer-Profile.ejs', {
+					title: 'Employer Profile',
+	    	message: 'Welcome to your Employer Profile. Here you will be able to create a profile page for your company to hire job seekers during your job fair.',
+				// user details
+					user: req.user,
+					contactPerson: user.contactPerson,
+					gender: user.gender,
+					dateofbirth: user.dateofbirth,
+					city: user.city,
+					province: user.province,
+					postalcode: user.postalcode,
+					phone: user.phone,
+					address: user.address,
+					approved: user.approved,
+					jobs: jobs
+				});
+				}
+		});
 		}
 	});
 });
@@ -438,6 +446,28 @@ router.get('/profile', functions.isLoggedIn, (req,res,next) => {
 		title: 'profile pages'
 	});
 });
+// update employer profile
+router.post('/update-employer-profile', functions.isLoggedIn, (req,res,next) => {
+	let username = req.user.username;
+	//update the users details with the new inputs
+	User.update({username:username},
+		{ $set: {
+			companyName: req.body.companyName,
+			city: req.body.city,
+			province: req.body.province,
+			postalcode: req.body.postalcode,
+			phone: req.body.phone,
+			address: req.body.address,
+			desc: req.body.desc
+		}}, null, (err) => {
+		if(err){
+			console.log(err);
+		}
+		else {
+			res.redirect('/users');
+		}
+	});
+});
 //GET: jobs list pages
 router.get('/jobs-list', (req,res,next) => {
 	res.render('users/jobList',{
@@ -451,6 +481,55 @@ router.get('/employers-list', (req,res,next) => {
 		title: 'SMWDB',
 		user: req.user
 	});
+});
+//GET the add Jobs Page
+router.get('/add-job', functions.isLoggedIn, (req,res,next) => {
+	User.findOne(
+ 	 {'username': req.user.username},
+ 	 // list of information to grab from the db
+ 	 'companyName comapanyLogo', (err, user) => {
+		 if(err) {
+			 console.log(err);
+		 } else {
+			 res.render('employers/addJob',{
+				title: 'SMWDB',
+				user: req.user,
+				companyName: user.companyName,
+				companyLogo: user.comapanyLogo
+			});
+		 }
+	 });
+});
+// POST add the job to the db
+router.post('/add-job', functions.isLoggedIn, (req,res) => {
+	Job.create({
+				 username: req.user.username,
+	       companyName: req.body.companyName,
+	       companyLogo: req.body.companyLogo,
+	       jobTitle: req.body.jobTitle,
+	       location: req.body.location,
+				 salary: req.body.salary,
+				 jobDescription: req.body.jobDescription
+	   }, (err, job) => {
+	       if (err) {
+	           console.log(err);
+	       }
+	       else {
+	           res.redirect('/users');
+	       }
+	   }) ;
+});
+// Delete job
+router.get('/job-delete/:_id', (req,res,next) => {
+	let _id = req.params._id;
+
+	Job.remove({_id: _id}, (err) =>{
+		if(err){
+			console.log(err);
+		}else {
+			res.redirect('/users');
+		}
+	})
 });
 // allowed file type function
 const checkFileType = function(file, cb){

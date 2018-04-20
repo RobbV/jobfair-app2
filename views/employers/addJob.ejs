@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/admin-login.css">
+		<link rel="icon" href="/images/icon_gears.ico">
+		<!--animate css CDN-->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css" integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw" crossorigin="anonymous">
+    <!--Font Awesome CDN-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+		<link rel="stylesheet" href="/bower_components/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css">
+	</head>
+	<body>
+<form method="post">
+		<div class="form-group">
+				<label for="companyName">Company Name</label>
+				<input type="text" class="form-control" id="companyName"  value="<%= companyName %>" name="companyName">
+		</div>
+		<div class="form-group" style="display: none;">
+				<input type="text" class="form-control" name="companyLogo" value="<%=companyLogo%>">
+		</div>
+		<div class="form-group">
+				<label for="jobTitle">Job Title</label>
+				<input type="text" class="form-control" id="inputJobTitle" name="jobTitle" placeholder="Job Title">
+		</div>
+		<div class="form-group">
+				<label for="location">Location</label>
+				<input type="text" class="form-control" name="location" placeholder="Job Location">
+		</div>
+		<div class="form-group">
+				<label for="salary">Salary (Optional)</label>
+				<select class="form-control" id="inputSalary" name="salary">
+						<option selected>Choose..</option>
+						<option value="$20,000 - $30,000">$20,000 - $30,000</option>
+						<option value="$30,000 - $40,000">$30,000 - $40,000</option>
+						<option value="$40,000 - $50,000">$40,000 - $50,000</option>
+						<option value="$50,000 - $60,000">$50,000 - $60,000</option>
+						<option value="$60,000 - $70,000">$60,000 - $70,000</option>
+						<option value="$70,000 - $80,000">$70,000 - $80,000</option>
+						<option value="$80,000 - $90,000">$80,000 - $90,000</option>
+				</select>
+		</div>
+		<div class="form-group">
+				<label for="jobDescription">Job Description</label>
+				<textarea class="form-control" id="inputJobDescription" name="jobDescription" rows="10"></textarea>
+		</div>
+		<div class="form-group">
+
+				<small id="fileHelp" class="form-text text-muted">In this section the employers should be sure to describe the job as detailed as possible
+						for the job seekers to make a good choice
+				</small>
+		</div>
+		<fieldset class="form-group">
+
+		</fieldset>
+
+		<button type="submit" class="btn btn-primary btn-block">Add Job</button>
+		<a href="/users" role="button" class="btn btn-secondary btn-block">Back</a>
+</form>
+</body>
+</html>

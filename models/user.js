@@ -32,7 +32,8 @@ const userSchema = new mongoose.Schema({
 	logo: String,
 	image1: String,
 	image2: String,
-	image3: String
+	image3: String,
+	desc: String
 });
 
 //use plm to automatically define username and passport field for the model

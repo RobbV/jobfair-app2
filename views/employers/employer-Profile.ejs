@@ -1,0 +1,388 @@
+<% include ../shared/header %>
+<body>
+
+    <!-- Page Jumbotron -->
+    <div class="jumbotron jumbotron-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <h1 class="h1">
+                        Contact us
+                        <small>Feel free to contact us</small>
+                    </h1>
+                </div>
+            </div>
+            <!-- .row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- jumbotron jumbotron-sm -->
+
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <hr>
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-empprofile-tab" data-toggle="pill" href="#pills-empprofile" role="tab" aria-controls="pills-empprofile" aria-selected="true">Employer Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="false">Current Listings</a>
+                    </li>
+                    <!-- nav-item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-employer-tab" data-toggle="pill" href="#pills-employer" role="tab" aria-controls="pills-employer"
+                            aria-selected="false">Edit Profile</a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link" id="pills-resume-tab" data-toggle="pill" href="#pills-resume" role="tab" aria-controls="pills-resume"
+                                aria-selected="false">Resume/CV</a>
+                        </li>
+                </ul>
+                <!-- nav nav-pills mb-3 -->
+
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <div class="container">
+                            <div class="row">
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-dark">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Company Name</th>
+                                                <th scope="col">Job Title</th>
+                                                <th scope="col">Location</th>
+                                                <th scope="col">Salary</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+																					<% for(let i = 0; i < jobs.length; i++) { %>
+                                            <tr>
+                                                <th scope="row"><% i %></th>
+                                                <td><%= jobs[i].companyName %></td>
+                                                <td><%= jobs[i].jobTitle %></td>
+                                                <td><%= jobs[i].location %></td>
+                                                <td><%= jobs[i].salary %></td>
+                                                <td>
+                                                	<a href="#" role="button" class="btn btn-primary">edite</a>
+																									<a class="btn btn-danger" href="users/job-delete/<%= jobs[i]._id%>" onclick="return  confirm('are you sure you want to delete <%= jobs[i].jobTitle %> listing')" >Delete</a>
+                                                </td>
+                                            </tr>
+																						<%}%>
+                                        </tbody>
+                                    </table>
+                                    <!-- table table-striped table-dark -->
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- row -->
+                    </div>
+                    <!-- container -->
+                    <div class="tab-pane fade" id="pills-employer" role="tabpanel" aria-labelledby="pills-employer-tab">
+                            <form method="post" action="users/update-employer-profile">
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label for="inputUserName">Username</label>
+                                        <input type="text" class="form-control" id="inputUserName" name="inputUserName" value="<%= user.username %>" disabled>
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label for="inputCompanyName">Company Name</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inputCompanyName" name="companyName" value="<%=user.companyName%>">
+                                        </div>
+                                      </div>
+                                    </div>
+
+
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label for="inputAddress">Address</label>
+                                        <input type="text" class="form-control" id="inputAddress" name="address" value="<%=user.address%>">
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label for="inputPhoneNumber">Phone Number</label>
+                                        <input type="text" class="form-control" id="inputPhoneNumber" name="phone" value="<%=user.phone%>">
+                                      </div>
+
+                                    </div>
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label for="inputCity">City</label>
+                                        <input type="text" class="form-control" id="inputCity" name="city" value="<%=user.city%>">
+                                      </div>
+                                      <div class="form-group col-md-4">
+																				<label for="inputState">Province</label>
+																				<select id="inputState" class="form-control" name="province">
+																					<option value=""<%if(province == 'undefined') {%>selected<%}%>>select a province</option>
+																					<option value="Alberta"<%if(province == 'Alberta') {%>selected<%}%>>Alberta</option>
+																					<option value="British-Columbia"<%if(province == 'British-Columbia') {%>selected<%}%>>British Columbia</option>
+																					<option value="New-Brunswick"<%if(province == 'New-Brunswick') {%>selected<%}%>>New Brunswick</option>
+																					<option value="Newfoundland-Labrador"<%if(province == 'Newfoundland-Labrador') {%>selected<%}%>>Newfoundland & Labrador</option>
+																					<option value="Northwest-Territories"<%if(province == 'Northwest-Territories') {%>selected<%}%>>Northwest Territories</option>
+																					<option value="Nova-Scotia"<%if(province == 'Nova-Scotia') {%>selected<%}%>>Nova Scotia</option>
+																					<option value="Nunavut"<%if(province == 'Nunavut') {%>selected<%}%>>Nunavut</option>
+																					<option value="Ontario"<%if(province == 'Ontario') {%>selected<%}%>>Ontario</option>
+																					<option value="Prince-Edward-Island"<%if(province == 'Prince-Edward-Island') {%>selected<%}%>>Prince Edward Island</option>
+																					<option value="Quebec"<%if(province == 'Quebec') {%>selected<%}%>>Quebec</option>
+																					<option value="Saskatchewan"<%if(province == 'Saskatchewan') {%>selected<%}%>>Saskatchewan</option>
+																					<option value="Yukon"<%if(province == 'Yukon') {%>selected<%}%>>Yukon</option>
+																				</select>
+                                      </div>
+                                      <div class="form-group col-md-2">
+                                        <label for="inputZip">Postal Code</label>
+                                        <input type="text" class="form-control" id="inputZip" name="postalcode" value="<%=user.postalcode%>">
+                                      </div>
+                                    </div>
+                                    <div class="form-row">
+                                      <div class="form-group col-md-12">
+                                        <label for="inputCompanyDescription">Company Description</label>
+                                        <div class="input-group mb-3">
+                                          <input type="text" class="form-control" id="inputCompanyDescription" name="desc" value="<%=user.desc%>">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                                  </form>
+                    </div>
+                    <!-- tab-pane fade -->
+
+
+                    <div class="tab-pane fade" id="pills-resume" role="tabpanel" aria-labelledby="pills-resume-tab">
+
+                            <div class="container">
+                                    <div class="row">
+
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-dark">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Title</th>
+                                                        <th scope="col">Uploader</th>
+                                                        <th scope="col">Resume</th>
+                                                        <th scope="col">Cover Letter</th>
+                                                        <th scope="col">Edit</th>
+                                                        <th scope="col">Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>jasonresume.png</td>
+                                                        <td>Jason Morrison</td>
+                                                        <td>Download</td>
+                                                        <td>Download</td>
+                                                        <td>Edit</td>
+                                                        <td>Delete</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">2</th>
+                                                        <td>patricaresume.png</td>
+                                                        <td>Patrica Robinson</td>
+                                                        <td>Download</td>
+                                                        <td>Download</td>
+                                                        <td>Edit</td>
+                                                        <td>Delete</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">3</th>
+                                                        <td>ianresume.png</td>
+                                                        <td>Ian Rushand</td>
+                                                        <td>Download</td>
+                                                        <td>Download</td>
+                                                        <td>Edit</td>
+                                                        <td>Delete</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">4</th>
+                                                        <td>tinyresume.png</td>
+                                                        <td>Tiny Thomson</td>
+                                                        <td>Download</td>
+                                                        <td>Download</td>
+                                                        <td>Edit</td>
+                                                        <td>Delete</td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                            <!-- table table-striped table-dark -->
+                                        </div>
+                                        </div>
+                                        </div>
+
+
+                        </div>
+                        <!-- tab-pane fade -->
+
+                    <div class="tab-pane fade show active" id="pills-empprofile" role="tabpanel" aria-labelledby="pills-empprofile-tab">
+
+
+                            <div class="col-md-6  toppad  pull-right col-md-offset-3">
+                                    <div class="col-md-3 col-lg-3" align="center">
+                                      <img alt="User Pic" src="images/casino-rama.png" width="300" height="300" class="img-circle img-responsive">
+																		<a href="#" role="button" class="btn btn-secondary btn-sm"> update logo</a>
+																		</div>
+                                    <br>
+
+                                  </div>
+                                  <!-- col-md-3 col-lg-3 -->
+
+                                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+                                    <div class="panel panel-info">
+                                      <div class="panel-heading">
+                                        <h3 class="panel-title"><%= contactPerson %></h3>
+                                      </div>
+                                      <!-- panel-heading -->
+
+                                      <div class="panel-body">
+                                        <div class="row">
+                                          <div class="col-md-9 col-lg-9">
+                                            <table class="table table-user-information">
+                                              <tbody>
+                                                <tr>
+                                                  <td>Username:</td>
+                                                  <td><%=user.username%></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Company Name</td>
+                                                  <td><%= user.companyName %></td>
+                                                </tr>
+                                                <tr>
+
+                                                  <tr>
+                                                    <td>Address</td>
+                                                    <td><%=user.address%></td>
+                                                  </tr>
+                                                  <td>City</td>
+                                                  <td><%=user.city%>
+                                                    <br>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Province</td>
+                                                  <td><%=user.province%></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Postal Code</td>
+                                                  <td><%=user.postalcode%></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Phone Number</td>
+                                                  <td><%=user.phone%></td>
+                                                </tr>
+
+                                                <tr>
+                                                        <td>Company Description</td>
+                                                        <td><%=user.desc%></td>
+                                                      </tr>
+                                              </tbody>
+                                            </table>
+                                            <!-- table table-user-information -->
+																						<a class="btn btn-primary" href="users/add-job" role="button">Add New Job</a>
+                                          </div>
+                                          <!-- col-md-9 col-lg-9 -->
+                                        </div>
+                                        <!-- row -->
+                                      </div>
+                                      <!-- panel-body -->
+                                    </div>
+                                    <!-- panel panel-info -->
+                                  </div>
+                                  <!-- col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad -->
+                    </div>
+                    <!-- tab-pane fade -->
+
+
+                    <!-- tab-pane fade -->
+                    <hr>
+                </div>
+                <!-- tab-pane fade show active -->
+            </div>
+            <!-- tab-content -->
+
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+                <!-- Search Widget -->
+                <div class="card mb-4">
+                    <h5 class="card-header">Search</h5>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary" type="button">Go!</button>
+                            </span>
+                        </div>
+                        <!-- input-group -->
+                    </div>
+                    <!-- card-body -->
+                </div>
+                <!-- card-header -->
+
+
+                <!-- Side Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Posting a Job</h5>
+                    <div class="card-body">
+                        Looking for a job close to home? Use our
+                        <a href="#">search tool</a> to find a job in Simcoe County and the District of Muskoka. This tool includes listings
+                        directly from local employers to give you the best selection of jobs close to home.
+                    </div>
+                    <!-- card-body -->
+                </div>
+                <!-- card-header -->
+                <hr>
+                <div class="card my-4">
+                    <h5 class="card-header">Extra Information</h5>
+                    <div class="card-body">
+                        <p>We live in a big region it is not always easy getting to a job close to home. Find out transportation
+                            options available to you.</p>
+                        <p>
+                            <a href="https://www.carpool.ca/">Carpool</a>
+                            <br/>
+                            <a href="#">Angus Bus Schedule</a>
+                            <br/>
+                            <a href="#">Barrie Transit Bus Schedule</a>
+                            <br/>
+                            <a href="#">Bracebridge</a>
+                            <br/>
+                            <a href="#">Collingwood Transit Bus Schedule</a>
+                            <br/>
+                            <a href="#">Midland Transit Schedule</a>
+                            <br/>
+                            <a href="#">Orillia Transit Schedule</a>
+                            <br/>
+                            <a href="#">Wasaga Beach Transit Schedule</a>
+                            <br/>
+                            <a href="#">Corridor 11 Bus Schedule (Muskoka)</a>
+                            <br/>
+                            <a href="#">Huntsville Transit Schedule</a>
+                        </p>
+                    </div>
+                    <!-- card-body -->
+                </div>
+                <!-- card-header -->
+            </div>
+            <!-- card my-4 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+
+
+    <!-- JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+<% include ../shared/footer %>
