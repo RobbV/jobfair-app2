@@ -60,6 +60,7 @@ passport.deserializeUser(User.deserializeUser());
 // map route paths
 app.use('/', index);
 app.use('/users', users);
+app.use('/admins', admins);
 // session managment for employers
 
 // catch 404 and forward to error handler

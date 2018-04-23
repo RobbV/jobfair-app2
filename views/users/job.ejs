@@ -1,0 +1,20 @@
+<% include ../shared/header.ejs %>
+  <main style="min-height: 70vh;" class="container">
+    <h1><%= job.companyName %></h1>
+		<img src="/images/smwdb.png" alt="company logo" style="height: 400px;">
+		<h3>Job Title:<%= job.jobTitle %></h3>
+		<section>
+			<h5>Job Desciption:</h5>
+			<p><%= job.jobDescription %></p>
+		</section>
+		<section>
+			<h5>Salary:</h5>
+			<p><%= job.salary %></p>
+		</section>
+		<section>
+			<h5>Location:</h5>
+			<p><%= job.location %></p>
+		</section>
+
+  </main>
+  <% include ../shared/footer.ejs %>

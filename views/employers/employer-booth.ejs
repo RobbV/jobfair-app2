@@ -1,43 +1,6 @@
+<% include ../shared/header.ejs %>
 
 
-<!-- Contact Page -->
-<!-- Official Contact Page for Simcoe Muskoka Workforce Development Board -->
-
-<!doctype html>
-<html lang="en">
-
-<head>
-    <!-- Meta Tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Simcoe Muskoka Workforce Development Board (SMWDB)">
-    <meta name="author" content="RE:404">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="/stylesheets/employer-booth.css">
-
-    <!--Font Awesome CDN-->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-        crossorigin="anonymous">
-
-
-
-    <title>SMWDB</title>
-</head>
-
-<body>
-
-   <!-- Page Jumbotron -->
-   <div class="jumbotron-sm" id="jumbotronbanner">
-		 <% if(approved == undefined){%>
-			 <div class="alert alert-warning" role="alert">
-				Your account is in the process of being approved - you can setup your company's profile but it will not be visible to others.
-			</div>
-		<%} else if(approved == false) {%>
-			<div class="alert alert-danger" role="alert">
-  			Your Account has not been approved - your account will not be visible
-			</div>
-			<%}%>
 
     <!-- Page Jumbotron -->
     <div class="jumbotron-sm" id="jumbotronbanner">
@@ -70,7 +33,7 @@
 
             <div class="col-md-4">
                 <h3 class="my-3">Casino Rama</h3>
-                <img class="img-fluid" src="images/casino-rama.png" alt="Casino Rama">
+                <img class="img-fluid" src="/images/casino-rama.png" alt="Casino Rama">
                 <br>
                 <br>
                 <a class="btn btn-primary" href="#" role="button">Live Chat</a>
@@ -145,7 +108,7 @@
                     <h5 class="mb-0">
                         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
                             id="accordionlinksbutton">
-                            Links
+                            Job Listings
                         </button>
                     </h5>
                 </div>
@@ -153,7 +116,61 @@
 
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                     <div class="card-body">
-                        <a class="btn btn-primary" href="https://www.casinorama.com/" role="button">Casino Rama Official Website</a>
+											<div class="container">
+                            <div class="row">
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped ">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Uploader</th>
+                                                <th scope="col">Resume</th>
+                                                <th scope="col">Cover Letter</th>
+                                                <th scope="col">View</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>jasonresume.png</td>
+                                                <td>Jason Morrison</td>
+                                                <td>Download</td>
+                                                <td>Download</td>
+                                                <td><a role="button" href="#" class="btn btn-primary">View</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>patricaresume.png</td>
+                                                <td>Patrica Robinson</td>
+                                                <td>Download</td>
+                                                <td>Download</td>
+                                                <td><a role="button" href="#" class="btn btn-primary">View</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>ianresume.png</td>
+                                                <td>Ian Rushand</td>
+                                                <td>Download</td>
+                                                <td>Download</td>
+                                                <td><a role="button" href="#" class="btn btn-primary">View</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">4</th>
+                                                <td>tinyresume.png</td>
+                                                <td>Tiny Thomson</td>
+                                                <td>Download</td>
+                                                <td>Download</td>
+                                                <td><a role="button" href="#" class="btn btn-primary">View</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <!-- table table-striped table-dark -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- card-body -->
                 </div>
@@ -178,6 +195,4 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-</body>
-
-</html>
+<% include ../shared/footer.ejs %>

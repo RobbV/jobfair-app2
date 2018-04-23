@@ -85,7 +85,8 @@ router.get('/', functions.isLoggedIn, (req, res, next) =>{
 			profileImg: user.profilePic,
 			imgLocation: 'uploads/images/' + user.profilePic
 		});
-	} else {
+	}
+	if(user.userType == "employer") {
 		Job.find({ 'username': req.user.username }, ( err, jobs) => {
 				if(err) {
 					console.log(err);
@@ -108,6 +109,9 @@ router.get('/', functions.isLoggedIn, (req, res, next) =>{
 				});
 				}
 		});
+		}
+		if(user.userType == 'admin') {
+			res.redirect('admins');
 		}
 	});
 });
@@ -469,17 +473,49 @@ router.post('/update-employer-profile', functions.isLoggedIn, (req,res,next) => 
 	});
 });
 //GET: jobs list pages
-router.get('/jobs-list', (req,res,next) => {
-	res.render('users/jobList',{
+router.get('/jobs-list', functions.isLoggedIn, (req,res,next) => {
+	User.findOne(
+ 	 {'username': req.user.username},
+ 	 // list of information to grab from the db
+ 	 'userType ', (err,user) => {
+ 		if(err){
+ 			console.log(err);
+ 		} else{
+			Job.find((err, jobs) => {
+				if(err){
+					console.log(err);
+				} else {
+					console.log(jobs);
+					res.render('employers/job-list',{
+						title: 'SMWDB',
+						user: req.user,
+						jobs: jobs
+					});
+				}
+			});
+		}
+	});
+});
+//GET the Employers list page
+router.get('/employers-list', functions.isLoggedIn, (req,res,next) => {
+	res.render('users/employer-list',{
 		title: 'SMWDB',
 		user: req.user
 	});
 });
-//GET the Employers list page
-router.get('/employers-list', (req,res,next) => {
-	res.render('main',{
-		title: 'SMWDB',
-		user: req.user
+router.get('/employer-booth' , functions.isLoggedIn, (req,res,next) => {
+	User.findOne(
+ 	 {'username': req.user.username},
+ 	 // list of information to grab from the db
+ 	 'userType ', (err,user) => {
+ 		if(err){
+ 			console.log(err);
+ 		} else{
+			res.render('employers/employer-booth', {
+				title: 'employer booth',
+				user: req.user
+			});
+		}
 	});
 });
 //GET the add Jobs Page
@@ -487,7 +523,7 @@ router.get('/add-job', functions.isLoggedIn, (req,res,next) => {
 	User.findOne(
  	 {'username': req.user.username},
  	 // list of information to grab from the db
- 	 'companyName comapanyLogo', (err, user) => {
+ 	 'companyName companyLogo', (err, user) => {
 		 if(err) {
 			 console.log(err);
 		 } else {
@@ -495,7 +531,7 @@ router.get('/add-job', functions.isLoggedIn, (req,res,next) => {
 				title: 'SMWDB',
 				user: req.user,
 				companyName: user.companyName,
-				companyLogo: user.comapanyLogo
+				companyLogo: user.companyLogo
 			});
 		 }
 	 });
@@ -530,6 +566,22 @@ router.get('/job-delete/:_id', (req,res,next) => {
 			res.redirect('/users');
 		}
 	})
+});
+// View Job
+router.get('/job/:_id', (req, res, next) => {
+	Job.findOne(
+		{'_id': req.params._id}, (err, job) => {
+			if(err) {
+				console.log(err);
+			} else {
+				console.log(job);
+				res.render('users/job',{
+					title: 'SMWBD',
+					user: req.user,
+					job: job
+				});
+			}
+		});
 });
 // allowed file type function
 const checkFileType = function(file, cb){

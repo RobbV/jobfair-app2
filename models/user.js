@@ -33,7 +33,10 @@ const userSchema = new mongoose.Schema({
 	image1: String,
 	image2: String,
 	image3: String,
-	desc: String
+	desc: String,
+	// admin needed fields
+	fullname: String,
+	adminlevel: String
 });
 
 //use plm to automatically define username and passport field for the model

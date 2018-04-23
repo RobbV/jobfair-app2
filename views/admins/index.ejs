@@ -1,0 +1,38 @@
+<% include ../shared/header.ejs %>
+
+<main style="min-height: 70vh;">
+    <h1>List E mployers</h1>
+		<%if(admin.adminlevel == 'master') {%>
+			<a href="/admins/add">Add a New Admin</a>
+		<%}%>
+    <table class="table table-striped table-hover">
+        <tr>
+            <td>Company Name</td>
+            <td>Username</td>
+            <td>Contact Person</td>
+						<td>Phone #</td>
+						<td>Company Website</td>
+						<td>Approved</td>
+						<td>Actions</td>
+        </tr>
+      <% for(let i = 0; i < employer.length; i++) { %>
+        <tr>
+            <td><%= employer[i].companyName %></td>
+            <td><%= employer[i].username %></td>
+						<td><%= employer[i].contactPerson %></td>
+						<td><%= employer[i].phone %></td>
+						<td><a href="<%= employer[i].companySite %>" title="view employer website" target="blank"><%= employer[i].companySite %></a></td>
+						<td><%= employer[i].approved %></td>
+						<td><% if(employer[i].approved == false ) {%>
+							<a role="button" href="/admins/approve-employer/<%= employer[i]._id%>" class="btn btn-success btn-sm">approve</a>
+						<%}%>
+						<% if(employer[i].approved !== false ) {%>
+							<a role="button" href="/admins/disable-employer/<%= employer[i]._id %> " class="btn btn-danger btn-sm">disable</a>
+						<%}%>
+						</td>
+        </tr>
+				<%}%>
+    </table>
+</main>
+
+<% include ../shared/footer.ejs %>

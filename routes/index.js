@@ -154,7 +154,7 @@ router.post('/register-employer', (req,res,next) => {
 			aboutCompany: req.body.aboutCompany,
 			companyLogo: req.body.companyLogo,
 			oesc: req.body.oesc,
-			approved: req.body.approved
+			approved: false
 	}), req.body.password, (err,employer) =>{
 		if(err) {
 			console.log(err);
