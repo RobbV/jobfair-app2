@@ -67,7 +67,9 @@ app.use('/admins', admins);
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
-  next(err);
+  res.render('error404', {
+		title: '404 error: page not found'
+	});
 });
 
 // error handler

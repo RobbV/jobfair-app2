@@ -196,4 +196,11 @@ router.get('/logout', (req, res, next) => {
     res.redirect('/login');
 });
 //============================================
+router.get('/analytics', (req,res,next) => {
+	res.render('analytics', {
+		title: 'Job Fair Analytics',
+		user: {userType: 'admin'}
+
+	});
+});
 module.exports = router;
